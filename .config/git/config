@@ -1,0 +1,40 @@
+[user]
+	name = Trond A Ekseth
+	email = troeks@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[alias]
+	zip = !sh -c 'git-archive --format=zip --prefix=$(basename `pwd -P`)/ $0 > $(basename `pwd -P`)-$0.zip'
+	tgz = !sh -c 'git-archive --format=tgz --prefix=$(basename `pwd -P`)/ $0 > $(basename `pwd -P`)-$0.tar.gz'
+[diff]
+	renames = copy
+[web]
+	browser = wrapfox
+[pager]
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = "diff-so-fancy"
+[push]
+	default = upstream
+[diff "nodiff"]
+	command = /bin/true
+[core]
+	pager = less -x3
+	editor = nvim
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
