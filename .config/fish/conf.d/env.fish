@@ -6,6 +6,7 @@ set -x PATH \
   $HOME/usr/bin \
   $HOME/.local/bin \
   $HOME/.cargo/bin \
+  $HOME/.fzf/bin \
   $GOROOT/bin \
   $GOPATH/bin \
   $ANDROID_HOME/platform-tools \
