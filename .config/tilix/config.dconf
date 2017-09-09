@@ -1,0 +1,28 @@
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+foreground-color='#A7A7A7'
+rewrap-on-resize=true
+visible-name='Default'
+dim-color-set=false
+login-shell=true
+palette=['#1E1E1E', '#CF6A4C', '#8F9D6A', '#F9EE98', '#7587A6', '#9B859D', '#AFC4DB', '#A7A7A7', '#5F5A60', '#CF6A4C', '#8F9D6A', '#F9EE98', '#7587A6', '#9B859D', '#AFC4DB', '#FFFFFF']
+badge-color-set=false
+cursor-shape='block'
+cursor-colors-set=false
+highlight-colors-set=false
+use-system-font=false
+bold-color-set=false
+font='SauceCodePro Nerd Font 10'
+use-theme-colors=false
+terminal-title='${id}: ${title}'
+background-color='#1E1E1E'
+scrollback-lines=20224
+
+[/]
+accelerators-enabled=false
+copy-on-select=true
+terminal-title-style='none'
+window-state=130
+theme-variant='dark'
+app-title='${title}'
+warn-vte-config-issue=false
+window-style='disable-csd-hide-toolbar'

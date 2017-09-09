@@ -27,3 +27,14 @@ config checkout
 # config status gets really messy if this isn't disabled.
 config config --local status.showUntrackedFiles no
 ```
+
+#### Tilix
+
+Tilix is a bit difficult and uses dconf for configurations. This makes it
+slightly painful to share the config between computers, but it's at least
+possible to dump and load configurations through the dconf cli.
+
+```sh
+dconf dump /com/gexperts/Tilix/ > ~/.config/tilix/config.dconf
+dconf load /com/gexperts/Tilix/ < ~/.config/tilix/config.dconf
+```
