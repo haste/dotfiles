@@ -1,2 +1,17 @@
-.dotfiles
-.cache
+# Everything
+/*
+
+# Don't ignore config dotfiles
+!/.config*
+
+# But Ignore this
+/.config/google*
+/.config/chromium*
+/.config/nwjs*
+/.config/Slack
+/.config/Insomnia
+
+# Fish related files
+fish_history
+fish_read_history
+fishd.*

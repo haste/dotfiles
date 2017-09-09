@@ -1,0 +1,1 @@
+/home/haste/.config/fisherman/get/completions/get.fish

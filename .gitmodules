@@ -1,0 +1,3 @@
+[submodule ".config/fish/fisherman"]
+	path = .config/fish/fisherman
+	url = https://github.com/fisherman/fisherman.git

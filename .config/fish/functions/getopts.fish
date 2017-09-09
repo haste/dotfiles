@@ -1,0 +1,1 @@
+/home/haste/.config/fisherman/getopts/getopts.fish
