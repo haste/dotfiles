@@ -1,5 +1,5 @@
 # Load fisher
-source .config/fish/fisherman/fisher.fish
+source ~/.config/fish/fisherman/fisher.fish
 
 for file in ~/.config/fish/conf.d/*.fish
     source $file
