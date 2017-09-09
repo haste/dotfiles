@@ -1,0 +1,133 @@
+// vim:ts=4:sw=4:et
+{
+    // splith split container with 1 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": 0.6,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 2160,
+               "width": 2303,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3: Layout saving in i3 - Google Chrome",
+            "percent": 1,
+            "swallows": [
+               {
+               // "class": "^Google\\-chrome\\-unstable$",
+               // "instance": "^google\\-chrome\\-unstable\\ \\(\\/home\\/haste\\/\\.config\\/google\\-chrome\\-unstable\\)$",
+               // "title": "^i3\\:\\ Layout\\ saving\\ in\\ i3\\ \\-\\ Google\\ Chrome$",
+               // "transient_for": "^$",
+                 "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    // tabbed split container with 1 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": 0.4,
+    "type": "con",
+    "nodes": [
+        {
+            // splitv split container with 2 children
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "percent": 1,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 1,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 719,
+                       "width": 1535,
+                       "x": 1520,
+                       "y": 780
+                    },
+                    "name": "Slack - Pest Control",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^Slack$",
+                        "instance": "^slack$",
+                       // "title": "^Slack\\ \\-\\ Pest\\ Control$",
+                       // "transient_for": "^$",
+                       // "window_role": "^browser\\-window$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    // tabbed split container with 2 children
+                    "border": "pixel",
+                    "floating": "auto_off",
+                    "layout": "tabbed",
+                    "percent": 0.5,
+                    "type": "con",
+                    "nodes": [
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 434,
+                               "width": 642,
+                               "x": 0,
+                               "y": 0
+                            },
+                            "name": "0: #mms.no",
+                            "percent": 0.5,
+                            "swallows": [
+                               {
+                               // "class": "^Tilix$",
+                                "instance": "^tilix$",
+                               // "title": "^0\\:\\ \\#mms\\.no$",
+                               // "transient_for": "^$"
+                               }
+                            ],
+                            "type": "con"
+                        },
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 434,
+                               "width": 642,
+                               "x": 0,
+                               "y": 0
+                            },
+                            "name": "i3-save-tree --workspace 1 > ~/.i3/workspace-1.json",
+                            "percent": 0.5,
+                            "swallows": [
+                               {
+                               // "class": "^Tilix$",
+                                "instance": "^tilix$",
+                               // "title": "^i3\\-save\\-tree\\ \\-\\-workspace\\ 1\\ \\>\\ \\~\\/\\.i3\\/workspace\\-1\\.json$",
+                               // "transient_for": "^$"
+                               }
+                            ],
+                            "type": "con"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
