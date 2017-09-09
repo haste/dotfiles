@@ -12,3 +12,5 @@ set -x PATH \
   $ANDROID_HOME/platform-tools \
   $ANDROID_HOME/tools \
   $PATH
+
+set -x FZF_DEFAULT_COMMAND 'ag -g ""'
