@@ -1,0 +1,10 @@
+directory: /mnt/fluff/muziq
+library: /mnt/fluff/muziq/library.blb
+
+plugins: fetchart discogs replaygain scrub
+
+replaygain:
+   backend: gstreamer
+
+discogs:
+  source_weight: 0
