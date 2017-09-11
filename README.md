@@ -19,10 +19,11 @@ The only requirement is Git.
 
 ```sh
 # Clone a bare Git repo into ~/.dotfiles
-git clone --bare https://github.com/haste/dotfiles.git $HOME/.dotfiles
+git clone --bare git@github.com:haste/dotfiles.git $HOME/.dotfiles/
 
 # Populate $HOME.
 config checkout
+config submodule update --init --recursive
 
 # config status gets really messy if this isn't disabled.
 config config --local status.showUntrackedFiles no
