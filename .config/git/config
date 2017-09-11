@@ -2,7 +2,6 @@
 	name = Trond A Ekseth
 	email = troeks@gmail.com
 [color]
-	diff = auto
 	status = auto
 	branch = auto
 	ui = true
