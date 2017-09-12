@@ -15,3 +15,6 @@
 fish_history
 fish_read_history
 fishd.*
+
+# Neovim related files
+.config/nvim/.netrwhist
