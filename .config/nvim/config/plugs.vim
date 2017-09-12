@@ -194,9 +194,16 @@ Plug 'tpope/vim-markdown'
 
 " Rust
 " """"
-"
+
 " https://github.com/rust-lang/rust.vim
 " Vim configuration for Rust.
 Plug 'rust-lang/rust.vim'
+
+" Fish
+" """"
+
+" https://github.com/dag/vim-fish
+" Vim support for editing fish scripts
+Plug 'wilriker/vim-fish'
 
 call plug#end()
