@@ -1,8 +1,3 @@
-autocmd BufNewFile,BufReadPre *.js  let b:syntastic_checkers =
-         \ HasConfig('.eslintrc', expand('<amatch>:h')) ? ['eslint'] :
-         \ HasConfig('.jshintrc', expand('<amatch>:h')) ? ['jshint'] :
-         \     ['standard']
-
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
