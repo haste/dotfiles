@@ -29,6 +29,10 @@ Plug 'https://github.com/akanosora/vimfiles', { 'rtp': 'bundle/vim-numbers' }
 " Vim script for text filtering and alignment
 Plug 'godlygeek/tabular'
 
+" https://github.com/neomake/neomake
+" Asynchronous linting and make framework for Neovim/Vim
+Plug 'neomake/neomake'
+
 " https://github.com/airblade/vim-gitgutter
 " A Vim plugin which shows a git diff in the gutter (sign column).
 Plug 'airblade/vim-gitgutter'
