@@ -29,10 +29,6 @@ Plug 'https://github.com/akanosora/vimfiles', { 'rtp': 'bundle/vim-numbers' }
 " Vim script for text filtering and alignment
 Plug 'godlygeek/tabular'
 
-" https://github.com/scrooloose/syntastic
-" Syntax checking hacks for vim
-Plug 'scrooloose/syntastic'
-
 " https://github.com/airblade/vim-gitgutter
 " A Vim plugin which shows a git diff in the gutter (sign column).
 Plug 'airblade/vim-gitgutter'
