@@ -141,13 +141,6 @@ Plug 'elzr/vim-json'
 " An expansion of Vim's current JavaScript syntax file.
 Plug '1995eaton/vim-better-javascript-completion'
 
-" https://github.com/prettier/vim-prettier
-" A vim plugin wrapper for prettier
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-
-
 " https://github.com/hail2u/vim-css3-syntax
 " CSS3 syntax (and syntax defined in some foreign specifications) support for
 " Vim's built-in syntax/css.vim
