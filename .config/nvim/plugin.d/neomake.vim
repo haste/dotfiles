@@ -2,4 +2,4 @@
 call neomake#configure#automake('nw', 750)
 
 " Automatically open the location list
-let g:neomake_open_list = 2
+" let g:neomake_open_list = 2
