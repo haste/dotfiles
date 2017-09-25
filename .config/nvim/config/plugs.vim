@@ -62,6 +62,10 @@ Plug 'editorconfig/editorconfig-vim'
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
 
+" https://github.com/sbdchd/neoformat
+" ✨ A (Neo)vim plugin for formatting code.
+Plug 'sbdchd/neoformat'
+
 " Completion
 " """"""""""
 
