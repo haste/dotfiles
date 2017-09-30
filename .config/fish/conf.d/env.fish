@@ -17,5 +17,5 @@ set -x FZF_DEFAULT_COMMAND 'ag -g ""'
 
 switch (uname)
     case Linux
-        set -x EDITR /usr/bin/nvim
+        set -x EDITOR /usr/bin/nvim
 end
