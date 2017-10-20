@@ -29,9 +29,9 @@ Plug 'https://github.com/akanosora/vimfiles', { 'rtp': 'bundle/vim-numbers' }
 " Vim script for text filtering and alignment
 Plug 'godlygeek/tabular'
 
-" https://github.com/neomake/neomake
-" Asynchronous linting and make framework for Neovim/Vim
-Plug 'neomake/neomake'
+" https://github.com/w0rp/ale
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
 
 " https://github.com/airblade/vim-gitgutter
 " A Vim plugin which shows a git diff in the gutter (sign column).
@@ -61,10 +61,6 @@ Plug 'editorconfig/editorconfig-vim'
 " https://github.com/tpope/vim-abolish
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
-
-" https://github.com/sbdchd/neoformat
-" ✨ A (Neo)vim plugin for formatting code.
-Plug 'sbdchd/neoformat'
 
 " Completion
 " """"""""""
