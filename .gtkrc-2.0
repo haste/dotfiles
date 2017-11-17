@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/haste/.gtkrc-2.0.mine"
-gtk-theme-name="Arc-Dark"
+gtk-theme-name="Adwaita-dark"
 gtk-icon-theme-name="hicolor"
 gtk-font-name="Roboto 8"
 gtk-cursor-theme-name="Adwaita"
