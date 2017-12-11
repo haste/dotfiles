@@ -62,6 +62,10 @@ Plug 'editorconfig/editorconfig-vim'
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
 
+" https://github.com/tpope/vim-fugitive
+" fugitive.vim: a Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+
 " Completion
 " """"""""""
 
