@@ -149,9 +149,9 @@ bar {
 
   colors {
     background #282a36
-    statusline #ffffff
+    statusline #f8f8f2
 
-    focused_workspace  #bd93f9 #bd93f9 #f8f8f2
+    focused_workspace  #bd93f9 #bd93f9 #4d4d4d
     active_workspace   #282a36 #282a36 #f8f8f2
     inactive_workspace #282a36 #282a36 #f8f8f2
     urgent_workspace   #900000 #900000 #ffffff
@@ -159,9 +159,9 @@ bar {
 }
 
 # class                 border  backgr. text    indicator
-client.focused          #bd93f9 #bd93f9 #F8F8F2 #BD93F9
-client.unfocused        #44475a #44475a #F8F8F2 #44475a
-client.focused_inactive #323232 #333333 #ebdbb2 #323232
+client.focused          #bd93f9 #bd93f9 #4d4d4d #bd93f9
+client.unfocused        #44475a #44475a #f8f8f2 #44475a
+client.focused_inactive #44475a #44475a #bd93f9 #323232
 client.urgent           #383a3b #383a3b #ee0000 #383a3b
 client.background       #282a36
 
