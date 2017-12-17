@@ -24,10 +24,10 @@ set __color_path_basename            $pathbg f8f8f2 --bold
 set __color_path_nowrite             magenta $colorfg
 set __color_path_nowrite_basename    magenta $colorfg --bold
 
-set __color_repo                     green $colorfg
+set __color_repo                     5af78e 4d4d4d
 set __color_repo_work_tree           brgrey $colorfg --bold
-set __color_repo_dirty               brred $colorfg
-set __color_repo_staged              yellow $colorfg
+set __color_repo_dirty               brred 4d4d4d
+set __color_repo_staged              ffb86c 4d4d4d
 
 set __color_vi_mode_default          brblue $colorfg --bold
 set __color_vi_mode_insert           brgreen $colorfg --bold
