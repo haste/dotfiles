@@ -35,5 +35,6 @@ set __color_vi_mode_visual           bryellow $colorfg --bold
 
 set __color_vagrant                  brcyan $colorfg
 set __color_username                 brgrey f8f8f2
+set __color_hostname                 brgrey f8f8f2 --bold
 set __color_rvm                      brmagenta $colorfg --bold
 set __color_virtualfish              brblue $colorfg --bold
