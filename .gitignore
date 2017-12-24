@@ -16,5 +16,27 @@ fish_history
 fish_read_history
 fishd.*
 
+# Ignore Fisherman symlinks
+.config/fish/completions/get.fish
+.config/fish/functions/__fzf_cd.fish
+.config/fish/functions/__fzf_cd_with_hidden.fish
+.config/fish/functions/__fzf_find_and_execute.fish
+.config/fish/functions/__fzf_find_file.fish
+.config/fish/functions/__fzf_install.fish
+.config/fish/functions/__fzf_reverse_isearch.fish
+.config/fish/functions/__fzf_uninstall.fish
+.config/fish/functions/__fzf_update.fish
+.config/fish/functions/__fzfcmd.fish
+.config/fish/functions/await.fish
+.config/fish/functions/fish_greeting.fish
+.config/fish/functions/fish_mode_prompt.fish
+.config/fish/functions/fish_prompt.fish
+.config/fish/functions/fish_right_prompt.fish
+.config/fish/functions/fish_title.fish
+.config/fish/functions/fish_user_key_bindings.fish
+.config/fish/functions/get.fish
+.config/fish/functions/getopts.fish
+.config/fish/functions/last_job_id.fish
+
 # Neovim related files
 .config/nvim/.netrwhist
