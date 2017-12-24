@@ -41,6 +41,7 @@ fishd.*
 .config/fish/functions/last_job_id.fish
 .config/fish/functions/__ssh_agent_is_started.fish
 .config/fish/functions/__ssh_agent_start.fish
+.config/fish/conf.d/ssh-agent.init.fish
 
 # Neovim related files
 .config/nvim/.netrwhist
