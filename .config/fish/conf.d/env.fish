@@ -1,6 +1,6 @@
 set -x ANDROID_HOME $HOME/scm/android-sdk-linux
 
-set paths $HOME/usr/bin $HOME/.local/bin $HOME/.cargo/bin $HOME/.fzf/bin $GOROOT/bin $GOPATH/bin $ANDROID_HOME/platform-tools $ANDROID_HOME/tools
+set paths $HOME/usr/bin $HOME/.local/bin $HOME/.cargo/bin $HOME/.fzf/bin $GOROOT/bin $GOPATH/bin $ANDROID_HOME/platform-tools $ANDROID_HOME/tools $HOME/.yarn/bin
 
 for i in $paths
     if test -d $i
