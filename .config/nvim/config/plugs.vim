@@ -37,10 +37,6 @@ Plug 'w0rp/ale'
 " A Vim plugin which shows a git diff in the gutter (sign column).
 Plug 'airblade/vim-gitgutter'
 
-" https://www.wakati.me/help/plugins/vim
-" Time tracking
-Plug 'wakatime/vim-wakatime'
-
 " https://github.com/vim-airline/vim-airline
 " lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
