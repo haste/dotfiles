@@ -191,6 +191,5 @@ ipc-socket ~/.i3/ipc.sock
 exec --no-startup-id xsetroot -solid "#282a36"
 #exec --no-startup-id sh ~/.tapet.sh
 exec --no-startup-id google-chrome
-exec --no-startup-id slack
 exec --no-startup-id tilix
 exec --no-startup-id "i3-msg 'workspace \"1: www\"; append_layout /home/haste/.i3/workspace-1.json'"
