@@ -1,0 +1,1 @@
+/home/haste/.config/fisherman/fzf/conf.d/fzf.fish
