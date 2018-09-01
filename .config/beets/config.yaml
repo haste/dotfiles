@@ -1,5 +1,5 @@
-directory: /mnt/fluff/muziq
-library: /mnt/fluff/muziq/library.blb
+directory: /mnt/sdb/muziq
+library: /mnt/sdb/muziq/library.blb
 
 plugins: fetchart discogs replaygain scrub
 
