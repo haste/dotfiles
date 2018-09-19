@@ -5,6 +5,8 @@ switch (uname)
     alias ls 'ls -G'
 end
 
+alias cat 'bat'
+
 # I like these confirmations.
 alias rm 'rm -i'
 alias cp 'cp -i'
