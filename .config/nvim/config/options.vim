@@ -50,6 +50,9 @@ set hidden
 " Color the entire line the cursor is on
 set cursorline
 
+" Disable folding of code
+set nofoldenable
+
 " Always show the sign column. Prevents gitgutter and syntastic from making the
 " text jump.
 autocmd BufEnter * sign define dummy
