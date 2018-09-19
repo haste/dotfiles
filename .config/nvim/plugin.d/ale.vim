@@ -1,14 +1,19 @@
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 let g:ale_fixers = {
-\   'javascript': ['prettier_eslint'],
+\   'javascript': ['prettier_eslint', 'prettier'],
+\   'typescript': ['prettier'],
+\   'css': ['prettier'],
 \   'go': ['gofmt', 'goimports'],
+\   'php': ['phpcbf'],
+\   'python': ['black'],
 \   'elixir': ['mix_format'],
 \}
 
 " Disable Elixir linters as the check for them slows my NUC to a crawl
 let g:ale_linters = {
 \   'elixir': [],
+\   'python': ['flake8'],
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.
