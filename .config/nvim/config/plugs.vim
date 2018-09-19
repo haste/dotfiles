@@ -150,6 +150,13 @@ Plug 'hail2u/vim-css3-syntax'
 " Preview colours in source code while editing
 Plug 'ap/vim-css-color'
 
+" Typescript
+" """"""""""
+
+" https://github.com/leafgarland/typescript-vim
+" Typescript syntax files for Vim
+Plug 'leafgarland/typescript-vim'
+
 " HTML5
 
 " https://github.com/othree/html5.vim
@@ -159,13 +166,15 @@ Plug 'othree/html5.vim'
 " Python
 " """"""
 
-" https://github.com/klen/python-mode
-" Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box.
-Plug 'klen/python-mode', { 'for': 'python' }
-
 " https://github.com/vim-scripts/indentpython.vim
 " An alternative indentation script for python
 Plug 'vim-scripts/indentpython.vim'
+
+" PHP
+" """
+
+" An up-to-date Vim syntax for PHP (7.x supported)
+Plug 'StanAngeloff/php.vim'
 
 " Elixir
 " """"""
