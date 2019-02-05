@@ -126,7 +126,7 @@ bindsym $mod+bracketleft border none
 bindsym $mod+Shift+m move scratchpad
 
 # Show the first scratchpad window
-bindsym $mod+m scratchpad show, resize set 1920 1080
+bindsym $mod+m scratchpad show
 
 # Default layout
 workspace_layout tabbed
