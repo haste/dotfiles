@@ -72,9 +72,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Multiple language plugs
 " """""""""""""""""""""""
 
-" https://github.com/mustache/vim-mode
-" mustache and handlebars mode for vim
-Plug 'mustache/vim-mode'
+" https://github.com/sheerun/vim-polyglot
+" A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
 
 " https://github.com/thinca/vim-ref
 " Integrated reference viewer.
@@ -86,10 +86,6 @@ Plug 'thinca/vim-ref'
 " Go
 " ""
 
-" https://github.com/fatih/vim-go
-" Go development plugin for Vim
-Plug 'fatih/vim-go', { 'for': 'go' }
-
 " https://github.com/nsf/gocode
 " An autocompletion daemon for the Go programming language
 Plug 'nsf/gocode', {'rtp': 'vim'}
@@ -97,13 +93,6 @@ Plug 'nsf/gocode', {'rtp': 'vim'}
 " https://github.com/zchee/deoplete-go
 " deoplete.nvim source for Go
 Plug 'zchee/deoplete-go'
-
-" LESS
-" """"
-
-" https://github.com/groenewege/vim-less
-" vim syntax for LESS (dynamic CSS)
-Plug 'groenewege/vim-less'
 
 " JavaScript
 " """"""""""
@@ -116,96 +105,19 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Tern plugin for Vim
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
-" https://github.com/mxw/vim-jsx
-" React JSX syntax highlighting and indenting for vim.
-Plug 'mxw/vim-jsx'
-
-" https://github.com/othree/yajs.vim
-" YAJS.vim: Yet Another JavaScript Syntax for Vim
-Plug 'othree/yajs.vim'
-
-" https://github.com/jason0x43/vim-js-indent
-" Vim indenter for standalone and embedded JavaScript
-Plug 'jason0x43/vim-js-indent'
-
-" https://github.com/othree/es.next.syntax.vim
-" ES.Next syntax for Vim
-Plug 'othree/es.next.syntax.vim'
-
-" https://github.com/elzr/vim-json
-" A better JSON for Vim: distinct highlighting of keywords vs values,
-" JSON-specific (non-JS) warnings, quote concealing
-Plug 'elzr/vim-json'
-
 " https://github.com/1995eaton/vim-better-javascript-completion
 " An expansion of Vim's current JavaScript syntax file.
 Plug '1995eaton/vim-better-javascript-completion'
-
-" https://github.com/hail2u/vim-css3-syntax
-" CSS3 syntax (and syntax defined in some foreign specifications) support for
-" Vim's built-in syntax/css.vim
-Plug 'hail2u/vim-css3-syntax'
 
 " https://github.com/ap/vim-css-color
 " Preview colours in source code while editing
 Plug 'ap/vim-css-color'
 
-" Typescript
-" """"""""""
-
-" https://github.com/leafgarland/typescript-vim
-" Typescript syntax files for Vim
-Plug 'leafgarland/typescript-vim'
-
-" HTML5
-
-" https://github.com/othree/html5.vim
-" HTML5 omnicomplete and syntax
-Plug 'othree/html5.vim'
-
-" Python
-" """"""
-
-" https://github.com/vim-scripts/indentpython.vim
-" An alternative indentation script for python
-Plug 'vim-scripts/indentpython.vim'
-
-" PHP
-" """
-
-" An up-to-date Vim syntax for PHP (7.x supported)
-Plug 'StanAngeloff/php.vim'
-
 " Elixir
 " """"""
 "
-" https://github.com/elixir-lang/vim-elixir
-" Vim configuration files for Elixir
-Plug 'elixir-lang/vim-elixir'
-
 " https://github.com/slashmili/alchemist.vim
 " Elixir Integration Into Vim
 Plug 'slashmili/alchemist.vim'
-
-" Markdown
-" """"""""
-
-" https://github.com/tpope/vim-markdown
-" Vim Markdown runtime files
-Plug 'tpope/vim-markdown'
-
-" Rust
-" """"
-
-" https://github.com/rust-lang/rust.vim
-" Vim configuration for Rust.
-Plug 'rust-lang/rust.vim'
-
-" Fish
-" """"
-
-" https://github.com/dag/vim-fish
-" Vim support for editing fish scripts
-Plug 'wilriker/vim-fish'
 
 call plug#end()
