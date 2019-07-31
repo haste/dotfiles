@@ -62,6 +62,10 @@ Plug 'tpope/vim-abolish'
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+" https://github.com/simnalamburt/vim-mundo
+" Vim undo tree visualizer
+Plug 'simnalamburt/vim-mundo'
+
 " Completion
 " """"""""""
 
