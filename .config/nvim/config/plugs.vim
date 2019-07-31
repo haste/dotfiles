@@ -103,11 +103,11 @@ Plug 'zchee/deoplete-go'
 
 " https://github.com/carlitux/deoplete-ternjs
 " deoplete.nvim source for javascript
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
 
 " https://github.com/ternjs/tern_for_vim
 " Tern plugin for Vim
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'yarn install' }
 
 " https://github.com/1995eaton/vim-better-javascript-completion
 " An expansion of Vim's current JavaScript syntax file.
