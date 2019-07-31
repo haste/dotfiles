@@ -1,10 +1,10 @@
 [profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
-foreground-color='#A7A7A7'
+foreground-color='#F8F8F2'
 rewrap-on-resize=true
 visible-name='Default'
 dim-color-set=false
 login-shell=true
-palette=['#1E1E1E', '#CF6A4C', '#8F9D6A', '#F9EE98', '#7587A6', '#9B859D', '#AFC4DB', '#A7A7A7', '#5F5A60', '#CF6A4C', '#8F9D6A', '#F9EE98', '#7587A6', '#9B859D', '#AFC4DB', '#FFFFFF']
+palette=['#000000', '#FF5454', '#50FA7B', '#F1FA8C', '#BD93F9', '#FF79C6', '#8BE8FD', '#BFBFBF', '#4D4D4D', '#FF6E67', '#5AF78D', '#F4F99D', '#CAA8FA', '#FF92D0', '#9AEDFE', '#E6E6E6']
 badge-color-set=false
 cursor-shape='block'
 cursor-colors-set=false
@@ -14,10 +14,11 @@ bold-color-set=false
 font='SauceCodePro Nerd Font 10'
 use-theme-colors=false
 terminal-title='${id}: ${title}'
-background-color='#1E1E1E'
-scrollback-lines=20224
+background-color='#282936'
+scrollback-lines=500000
 
 [/]
+quake-specific-monitor=0
 accelerators-enabled=false
 copy-on-select=true
 terminal-title-style='none'
