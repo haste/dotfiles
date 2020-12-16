@@ -14,13 +14,16 @@ floating_modifier $mod
 bindsym $mod+Return exec tilix
 
 # lock screen
-bindsym $mod+l exec i3lock -c 222222 -d && xset dpms force standby
+bindsym $mod+l exec i3lock -c 222222 -d && sleep .5 && xset dpms force standby
 
 # kill focused window
 bindsym $mod+Shift+C kill
 
-# start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run
+# program launcher
+bindsym $mod+p exec rofi -show run
+
+# find running application
+bindsym $mod+w exec rofi -show window
 
 # change focus
 bindsym $mod+n focus left
@@ -102,6 +105,12 @@ bindsym $mod+Shift+F1 reload
 bindsym $mod+Shift+F2 restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+F3 exit
+
+# Adjust Idåsen: Sit
+bindsym $mod+Shift+F8 exec idasen sit
+
+# Adjust Idåsen: Stand
+bindsym $mod+Shift+F9 exec idasen stand
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -190,6 +199,6 @@ ipc-socket ~/.i3/ipc.sock
 #exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc --glx-no-stencil --glx-no-rebind-pixmap --unredir-if-possible
 exec --no-startup-id xsetroot -solid "#282a36"
 #exec --no-startup-id sh ~/.tapet.sh
-exec --no-startup-id google-chrome
+exec --no-startup-id firefox
 exec --no-startup-id tilix
 exec --no-startup-id "i3-msg 'workspace \"1: www\"; append_layout /home/haste/.i3/workspace-1.json'"
