@@ -12,31 +12,19 @@
 	renames = copy
 [web]
 	browser = wrapfox
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
 [push]
 	default = upstream
 [diff "nodiff"]
 	command = /bin/true
 [core]
-	pager = less -x3
+  #pager = delta --plus-color="#012800" --minus-color="#340001"
 	editor = nvim
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 227
-	frag = magenta bold
-	commit = 227 bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+[interactive]
+    diffFilter = delta --color-only
