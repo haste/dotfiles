@@ -1,3 +1,7 @@
 .include /etc/pulse/default.pa
 
-load-module module-loopback latency_msec=1 source=2 sink=0
+# load-module module-loopback latency_msec=1 source=alsa_input.pci-0000_00_1f.3.analog-stereo sink=alsa_output.usb-Schiit_Audio_Schiit_4490_G2-00.iec958-stereo
+
+# Mono to stereo
+load-module module-remap-source master=alsa_input.usb-Focusrite_Scarlett_Solo_USB-00.analog-stereo source_name=Mic-Mono master_channel_map=left channel_map=mono
+set-default-source Mic-Mono
