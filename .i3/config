@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # font for window titles.
-font pango:SauceCodePro Nerd Font 6
+font pango:SauceCodePro SauceCodePro Nerd Font Regular 6
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -197,8 +197,8 @@ assign [class="Wine"] 5: opengl
 ipc-socket ~/.i3/ipc.sock
 
 #exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc --glx-no-stencil --glx-no-rebind-pixmap --unredir-if-possible
+exec --no-startup-id "picom --config ~/.config/picom/picom.conf --experimental-backends"
 exec --no-startup-id xsetroot -solid "#282a36"
 #exec --no-startup-id sh ~/.tapet.sh
 exec --no-startup-id firefox
 exec --no-startup-id tilix
-exec --no-startup-id "i3-msg 'workspace \"1: www\"; append_layout /home/haste/.i3/workspace-1.json'"
