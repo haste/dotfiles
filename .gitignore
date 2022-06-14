@@ -3,6 +3,7 @@
 
 # Don't ignore config dotfiles
 !/.config*
+!/.i3
 
 # But Ignore this
 /.config/google*
@@ -17,11 +18,14 @@ fish_read_history
 fishd.*
 
 # Ignore Fisherman files and symlinks
-.config/fisherman/
-.config/fish/functions/fisher.fish
+.config/fish/completions/fisher.fish
 .config/fish/completions/get.fish
-.config/fish/functions/*
+.config/fish/conf.d/fzf.fish
 .config/fish/conf.d/ssh-agent.init.fish
+.config/fisherman/
+.config/fish/fish_variables
+.config/fish/functions/*
+.config/fish/functions/fisher.fish
 
 # Neovim related files
 .config/nvim/.netrwhist

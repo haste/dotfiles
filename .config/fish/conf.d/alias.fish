@@ -6,6 +6,7 @@ switch (uname)
 end
 
 alias cat 'bat'
+alias cal "cal -m"
 
 # I like these confirmations.
 alias rm 'rm -i'

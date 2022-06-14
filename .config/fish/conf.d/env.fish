@@ -10,6 +10,8 @@ set -x FZF_DEFAULT_COMMAND 'ag -g ""'
 
 set -x BAT_THEME 'Dracula'
 
+set -x LESS "-XFR"
+
 switch (uname)
     case Linux
         set -x EDITOR /usr/bin/nvim
