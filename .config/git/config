@@ -28,3 +28,7 @@
   cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [interactive]
     diffFilter = delta --color-only
+[pull]
+	ff = only
+[includeIf "gitdir:**/amoi/"]
+  path = config-amoi
