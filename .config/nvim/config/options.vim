@@ -63,3 +63,6 @@ augroup nvimrc_aucmd
   autocmd!
   autocmd CursorHold,FocusGained,FocusLost * rshada|wshada
 augroup END
+
+highlight link NonASCII Error
+autocmd Syntax * :syntax match NonASCII "[^\d0-\d127]"

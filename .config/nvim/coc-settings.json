@@ -1,0 +1,19 @@
+{
+  "coc": {
+     "preferences": {
+       "formatOnSaveFiletypes": ["html", "javascript", "elixir"]
+     }
+  },
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"]
+    }
+  },
+  // If you use neovim you can enable codelenses with this
+  "codeLens.enable": true,
+  "elixirLS.mixEnv": "dev",
+  "javascript.referencesCodeLens.enable": false,
+  "typescript.referencesCodeLens.enable": false
+}

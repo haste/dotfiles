@@ -66,12 +66,16 @@ Plug 'tpope/vim-fugitive'
 " Vim undo tree visualizer
 Plug 'simnalamburt/vim-mundo'
 
+" https://github.com/mbbill/undotree
+"  The undo history visualizer for VIM
+Plug 'mbbill/undotree'
+
 " Completion
 " """"""""""
 
-" https://github.com/Shougo/deoplete.nvim
-" Dark powered asynchronous completion framework for neovim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" https://github.com/neoclide/coc.nvim
+"  Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Multiple language plugs
 " """""""""""""""""""""""
@@ -101,14 +105,6 @@ Plug 'zchee/deoplete-go'
 " JavaScript
 " """"""""""
 
-" https://github.com/carlitux/deoplete-ternjs
-" deoplete.nvim source for javascript
-Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
-
-" https://github.com/ternjs/tern_for_vim
-" Tern plugin for Vim
-Plug 'ternjs/tern_for_vim', { 'do': 'yarn install' }
-
 " https://github.com/1995eaton/vim-better-javascript-completion
 " An expansion of Vim's current JavaScript syntax file.
 Plug '1995eaton/vim-better-javascript-completion'
@@ -119,9 +115,15 @@ Plug 'ap/vim-css-color'
 
 " Elixir
 " """"""
-"
-" https://github.com/slashmili/alchemist.vim
-" Elixir Integration Into Vim
-Plug 'slashmili/alchemist.vim'
+
+"  Elixir language server extension based on elixir-ls for coc.nvim
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
+" imba
+" """"
+
+" https://github.com/simeng/vim-imba
+" Vimba - Imba syntax highlighting for vim
+Plug 'simeng/vim-imba'
 
 call plug#end()
