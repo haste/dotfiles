@@ -1,0 +1,88 @@
+* {
+	font-size:17px;
+	font-family: SauceCodePro SauceCodePro Nerd Font Regular;
+	border-color:transparent;
+	text-shadow:  2px 2px 0px #000000;
+}
+
+window#waybar {
+	background-color: transparent;
+}
+window#waybar:first-child > box {
+	background-color: #282a36 ;
+	color: #f8f8f2;
+}
+
+#workspaces {
+	padding: 0 4px 0 4px;
+	font-size: 17px;
+}
+
+#workspaces button {
+	padding: 0 4px 0 4px;
+	background-color: transparent ;
+	color: #f8f8f2;
+	margin-bottom:2px;
+	margin-top:2px;
+}
+
+#workspaces button:hover {
+	border-color: transparent;
+	color: #ff5555;
+}
+
+#workspaces button.focused {
+	color: #50fa7b;
+}
+
+#workspaces button:active {
+	color: #bd93f9;
+	background: transparent;
+}
+
+#workspaces button.urgent {
+	color: #ff8080;
+}
+
+#window {
+	background-color: transparent;
+	padding: 0px 0px 0px 8px;
+}
+
+#battery {
+	background-color: transparent;
+	padding: 0px 8px 0px 8px;
+}
+
+#network {
+	padding: 0px 8px 0px 8px;
+}
+
+#clock {
+	padding: 0px 8px 0px 8px;
+	color: #50fa7b;
+}
+
+#pulseaudio {
+	padding: 0px 8px 0px 8px;
+}
+
+#pulseaudio.muted {
+	padding: 0px 8px 0px 8px;
+}
+
+#backlight {
+	padding: 0px 8px 0px 8px;
+}
+
+#memory{
+	padding: 0px 8px 0px 8px;
+}
+
+#cpu{
+	padding: 0px 8px 0px 8px;
+}
+
+#custom-ddcutil {
+	padding: 0px 8px 0px 8px;
+}

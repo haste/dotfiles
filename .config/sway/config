@@ -175,6 +175,9 @@ workspace_layout tabbed
 
 # Border style
 default_border pixel 1
+font pango:monospace 0
+titlebar_border_thickness 0
+titlebar_padding 1 6
 
 # Hide edge borders
 hide_edge_borders both
@@ -182,22 +185,9 @@ hide_edge_borders both
 # Automatically switch between workspaces when focusing the active one
 workspace_auto_back_and_forth yes
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
-  status_command waybar
-  font pango:SauceCodePro Nerd Font 6
-  mode hide
-
-  colors {
-    background #282a36
-    statusline #f8f8f2
-
-    focused_workspace  #bd93f9 #bd93f9 #4d4d4d
-    active_workspace   #282a36 #282a36 #f8f8f2
-    inactive_workspace #282a36 #282a36 #f8f8f2
-    urgent_workspace   #900000 #900000 #ffffff
-    }
+    swaybar_command waybar
+    mode hide
 }
 
 # class                 border  backgr. text    indicator
