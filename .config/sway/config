@@ -213,6 +213,7 @@ for_window [instance="Blizzard Launcher.exe"] floating enable
 # Workaround firefox notifications not floating
 no_focus [app_id="firefox" title="^$"]
 for_window [app_id="firefox" title="^$"] border none, floating enable, move position 3484 px 5 px
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] border none, floating enable, move position 1862 px 0 px
 
 # Move stuff around
 assign [class="Firefox"] 1: www
