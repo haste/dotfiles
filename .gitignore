@@ -20,7 +20,6 @@ fishd.*
 # Ignore Fisherman files and symlinks
 .config/fish/completions/fisher.fish
 .config/fish/completions/get.fish
-.config/fish/conf.d/fzf.fish
 .config/fish/conf.d/ssh-agent.init.fish
 .config/fisherman/
 .config/fish/fish_variables
