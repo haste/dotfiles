@@ -1,2 +1,7 @@
 set -gx PATH "$VOLTA_HOME/bin" $PATH
-source ~/.asdf/asdf.fish
+
+switch (uname)
+  case Linux
+    source ~/.asdf/asdf.fish
+end
+

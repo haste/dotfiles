@@ -15,4 +15,8 @@ set -x LESS "-XFR"
 switch (uname)
     case Linux
         set -x EDITOR /usr/bin/nvim
+
+    case Darwin
+        set fish_user_paths /opt/homebrew/bin $fish_user_paths
+
 end
