@@ -12,6 +12,8 @@ set -x BAT_THEME 'Dracula'
 
 set -x LESS "-XFR"
 
+set -x ERL_AFLAGS "-kernel shell_history enabled"
+
 switch (uname)
     case Linux
         set -x EDITOR /usr/bin/nvim
