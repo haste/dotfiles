@@ -11,9 +11,12 @@
       "rootPatterns": ["elm.json"]
     }
   },
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
   // If you use neovim you can enable codelenses with this
   "codeLens.enable": true,
   "elixirLS.mixEnv": "dev",
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
   "javascript.referencesCodeLens.enable": false,
   "typescript.referencesCodeLens.enable": false
 }
