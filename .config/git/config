@@ -14,6 +14,7 @@
 	browser = wrapfox
 [push]
 	default = upstream
+	autoSetupRemote = true
 [diff "nodiff"]
 	command = /bin/true
 [core]
