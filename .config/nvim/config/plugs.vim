@@ -10,10 +10,6 @@ Plug 'abra/vim-obsidian'
 " :scream: A dark theme for Vim
 Plug 'dracula/vim'
 
-" https://github.com/zanglg/nova.vim
-" Another color scheme for vim/neovim, only supports 24bit true color
-Plug 'zanglg/nova.vim'
-
 " General
 " """""""""
 
@@ -47,7 +43,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " https://github.com/junegunn/fzf.vim
 " fzf  vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " https://github.com/editorconfig/editorconfig-vim

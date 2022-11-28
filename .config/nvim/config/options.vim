@@ -7,11 +7,11 @@ filetype off
 " Don't create swapfiles
 set noswapfile
 
-" Display title
-set title
-
 " Enable smart indenting
 set smartindent
+
+" Disable mouse
+set mouse=
 
 " persistent undo
 set undofile                " Save undo's after file closes
