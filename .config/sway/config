@@ -25,7 +25,7 @@ font pango:SauceCodePro SauceCodePro Nerd Font Regular 6
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec tilix
+bindsym $mod+Return exec kitty
 
 # lock screen
 set $locker 'swaylock -f -c 222222'
@@ -227,4 +227,4 @@ output * bg #282a36 solid_color
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec mako
 exec --no-startup-id firefox
-exec --no-startup-id tilix
+exec --no-startup-id kitty
