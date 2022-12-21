@@ -19,7 +19,7 @@ switch (uname)
         set -x EDITOR /usr/bin/nvim
 
     case Darwin
-        set fish_user_paths /opt/homebrew/bin /opt//homebrew/Cellar/libpq/14.4/bin $fish_user_paths
+        set fish_user_paths /opt/homebrew/bin /opt/homebrew/opt/libpq/bin/ $fish_user_paths
         set fish_user_paths /opt/homebrew/opt/python@3.8/bin /opt/homebrew/opt/python@3.9/bin /opt/homebrew/opt/python@3.10/bin $fish_user_paths
 
 end

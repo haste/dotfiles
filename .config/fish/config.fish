@@ -4,6 +4,6 @@ switch (uname)
   case Linux
     source ~/.asdf/asdf.fish
   case Darwin
-    source /opt/homebrew/opt/asdf/asdf.fish
+    source /opt/homebrew/opt/asdf/libexec/asdf.fish
 end
 
