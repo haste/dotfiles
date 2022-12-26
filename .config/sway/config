@@ -25,7 +25,7 @@ font pango:SauceCodePro SauceCodePro Nerd Font Regular 6
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # lock screen
 set $locker 'swaylock -f -c 222222'
