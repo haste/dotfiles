@@ -46,10 +46,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" https://github.com/editorconfig/editorconfig-vim
-" EditorConfig plugin
-Plug 'editorconfig/editorconfig-vim'
-
 " https://github.com/tpope/vim-abolish
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
