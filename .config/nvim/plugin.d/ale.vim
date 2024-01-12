@@ -15,7 +15,7 @@ let g:ale_fixers = {
 " Disable Elixir linters as the check for them slows my NUC to a crawl
 let g:ale_linters = {
 \    'elixir': [],
-\   'python': ['flake8'],
+\   'python': ['ruff'],
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.
