@@ -13,6 +13,10 @@ Plug 'dracula/vim'
 " General
 " """""""""
 
+" https://github.com/nvim-treesitter/nvim-treesitter
+"  Nvim Treesitter configurations and abstraction layer
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " https://github.com/bitc/vim-bad-whitespace
 " Highlights whitespace at the end of lines, only in modifiable buffers
 Plug 'bitc/vim-bad-whitespace'
@@ -68,17 +72,6 @@ Plug 'mbbill/undotree'
 " https://github.com/neoclide/coc.nvim
 "  Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Multiple language plugs
-" """""""""""""""""""""""
-
-" https://github.com/sheerun/vim-polyglot
-" A solid language pack for Vim.
-Plug 'sheerun/vim-polyglot'
-
-" https://github.com/thinca/vim-ref
-" Integrated reference viewer.
-Plug 'thinca/vim-ref'
 
 " Language specific
 " """""""""""""""""
