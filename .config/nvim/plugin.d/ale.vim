@@ -1,10 +1,10 @@
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 let g:ale_fixers = {
-\   'javascript': ['prettier_eslint', 'prettier'],
-\   'javascriptreact': ['prettier_eslint', 'prettier'],
-\   'typescript': ['prettier_eslint', 'prettier'],
-\   'typescriptreact': ['prettier_eslint', 'prettier'],
+\   'javascript': ['biome', 'prettier_eslint', 'prettier'],
+\   'javascriptreact': ['biome', 'prettier_eslint', 'prettier'],
+\   'typescript': ['biome', 'prettier_eslint', 'prettier'],
+\   'typescriptreact': ['biome', 'prettier_eslint', 'prettier'],
 \   'css': ['prettier'],
 \   'go': ['gofmt', 'goimports'],
 \   'php': ['phpcbf'],
@@ -16,6 +16,10 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \    'elixir': [],
 \   'python': ['ruff'],
+\   'javascript': ['biome'],
+\   'javascriptreact': ['biome'],
+\   'typescript': ['biome'],
+\   'typescriptreact': ['biome'],
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.
