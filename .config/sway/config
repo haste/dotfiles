@@ -175,7 +175,7 @@ workspace_layout tabbed
 
 # Border style
 default_border pixel 1
-font pango:monospace 0
+font pango:monospace 0.001
 titlebar_border_thickness 0
 titlebar_padding 1 6
 
