@@ -2,6 +2,7 @@ execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/options.vim'
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/keys.vim'
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/plugs.vim'
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/lua/treesitter.lua'
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/lua/elixir-tools.lua'
 
 colorscheme dracula
 

@@ -66,6 +66,10 @@ Plug 'simnalamburt/vim-mundo'
 "  The undo history visualizer for VIM
 Plug 'mbbill/undotree'
 
+" https://github.com/ap/vim-css-color
+" Preview colours in source code while editing
+Plug 'ap/vim-css-color'
+
 " Completion
 " """"""""""
 
@@ -83,10 +87,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " An autocompletion daemon for the Go programming language
 Plug 'nsf/gocode', {'rtp': 'vim'}
 
-" https://github.com/zchee/deoplete-go
-" deoplete.nvim source for Go
-Plug 'zchee/deoplete-go'
-
 " JavaScript
 " """"""""""
 
@@ -94,15 +94,13 @@ Plug 'zchee/deoplete-go'
 " An expansion of Vim's current JavaScript syntax file.
 Plug '1995eaton/vim-better-javascript-completion'
 
-" https://github.com/ap/vim-css-color
-" Preview colours in source code while editing
-Plug 'ap/vim-css-color'
-
 " Elixir
 " """"""
 
-"  Elixir language server extension based on elixir-ls for coc.nvim
-Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+" https://github.com/elixir-tools/elixir-tools.nvim
+"  Neovim plugin for Elixir
+Plug 'nvim-lua/plenary.nvim'
+Plug 'elixir-tools/elixir-tools.nvim'
 
 " imba
 " """"
