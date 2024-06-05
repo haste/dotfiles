@@ -29,10 +29,6 @@ Plug 'https://github.com/akanosora/vimfiles', { 'rtp': 'bundle/vim-numbers' }
 " Vim script for text filtering and alignment
 Plug 'godlygeek/tabular'
 
-" https://github.com/w0rp/ale
-" Asynchronous Lint Engine
-Plug 'w0rp/ale'
-
 " https://github.com/airblade/vim-gitgutter
 " A Vim plugin which shows a git diff in the gutter (sign column).
 Plug 'airblade/vim-gitgutter'
@@ -70,11 +66,25 @@ Plug 'mbbill/undotree'
 " Preview colours in source code while editing
 Plug 'ap/vim-css-color'
 
+" https://github.com/neovim/nvim-lspconfig
+"  Quickstart configs for Nvim LSP
+Plug 'neovim/nvim-lspconfig'
+
+" https://github.com/mfussenegger/nvim-lint
+"  An asynchronous linter plugin for Neovim complementary to the built-in
+"  Language Server Protocol support.
+Plug 'mfussenegger/nvim-lint'
+
+" https://github.com/mhartington/formatter.nvim
+" A format runner for Neovim.
+Plug 'mhartington/formatter.nvim'
+
 " Completion
 " """"""""""
 
 " https://github.com/neoclide/coc.nvim
-"  Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.
+"  Nodejs extension host for vim & neovim, load extensions like VSCode and host
+"  language servers.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Language specific
