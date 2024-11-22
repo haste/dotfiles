@@ -61,7 +61,8 @@ autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('
 " Save history
 augroup nvimrc_aucmd
   autocmd!
-  autocmd CursorHold,FocusGained,FocusLost * rshada|wshada
+  autocmd FocusGained * rshada
+  autocmd FocusLost * wshada
 augroup END
 
 highlight link NonASCII Error

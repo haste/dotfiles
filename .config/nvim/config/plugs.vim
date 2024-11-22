@@ -75,9 +75,9 @@ Plug 'neovim/nvim-lspconfig'
 "  Language Server Protocol support.
 Plug 'mfussenegger/nvim-lint'
 
-" https://github.com/mhartington/formatter.nvim
-" A format runner for Neovim.
-Plug 'mhartington/formatter.nvim'
+" https://github.com/stevearc/conform.nvim
+" Lightweight yet powerful formatter plugin for Neovim
+Plug 'stevearc/conform.nvim'
 
 " Completion
 " """"""""""
@@ -109,8 +109,8 @@ Plug '1995eaton/vim-better-javascript-completion'
 
 " https://github.com/elixir-tools/elixir-tools.nvim
 "  Neovim plugin for Elixir
-Plug 'nvim-lua/plenary.nvim'
-Plug 'elixir-tools/elixir-tools.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'elixir-tools/elixir-tools.nvim'
 
 " imba
 " """"
