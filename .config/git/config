@@ -1,35 +1,62 @@
+[branch]
+  sort = -committerdate
+[column]
+  ui = auto
 [user]
-	name = Trond A Ekseth
-	email = troeks@gmail.com
+  name = Trond A Ekseth
+  email = troeks@gmail.com
 [color]
-	status = auto
-	branch = auto
-	ui = true
+  status = auto
+  branch = auto
 [alias]
-	zip = !sh -c 'git-archive --format=zip --prefix=$(basename `pwd -P`)/ $0 > $(basename `pwd -P`)-$0.zip'
-	tgz = !sh -c 'git-archive --format=tgz --prefix=$(basename `pwd -P`)/ $0 > $(basename `pwd -P`)-$0.tar.gz'
+  zip = !sh -c 'git-archive --format=zip --prefix=$(basename `pwd -P`)/ $0 > $(basename `pwd -P`)-$0.zip'
+  tgz = !sh -c 'git-archive --format=tgz --prefix=$(basename `pwd -P`)/ $0 > $(basename `pwd -P`)-$0.tar.gz'
+  cc = "!sh -c '[[ $0 =~ ^(.*)\\ #([0-9]*)$ ]]; text=${BASH_REMATCH[1]// /-}; git checkout -b trond/issue-${BASH_REMATCH[2]}/${text,,}'"
 [diff]
-	renames = copy
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 [web]
-	browser = wrapfox
+  browser = wrapfox
 [push]
-	default = upstream
-	autoSetupRemote = true
+  default = simple
+  autoSetupRemote = true
+  followTags = true
 [diff "nodiff"]
-	command = /bin/true
+  command = /bin/true
 [core]
   #pager = delta --plus-color="#012800" --minus-color="#340001"
-	editor = nvim
+  editor = nvim
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [pull]
-	ff = only
+  ff = only
 [includeIf "gitdir:**/amoi/"]
   path = config-amoi
+[rerere]
+  enabled = true
+  autoupdate = true
+[tag]
+  sort = version:refname
+[init]
+  defaultBranch = main
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[merge]
+  conflictstyle = zdiff3
+[commit]
+  verbose = true
