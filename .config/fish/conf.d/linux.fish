@@ -4,7 +4,6 @@ switch (uname)
       export SDL_VIDEODRIVER=wayland
       export XDG_CURRENT_DESKTOP=sway
       export XDG_SESSION_DESKTOP=sway
-      export (dbus-launch)
 
       switch $hostname
         case triagia
