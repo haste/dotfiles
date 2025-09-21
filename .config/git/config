@@ -17,6 +17,7 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
+  relative = true
 [web]
   browser = wrapfox
 [push]
