@@ -45,12 +45,15 @@ require("pckr").add({
         formatters_by_ft = {
           css = javascript,
           elixir = { "mix" },
+          go = { "gofmt" },
           heex = { "mix" },
+          htmldjango = { "djlint" },
           html = { "djlint" },
           javascript = javascript,
           javascriptreact = javascript,
           json = javascript,
           lua = { "stylua" },
+          php = { "mago_format" },
           python = { "black" },
           scss = javascript,
           sql = { "sleek" },
@@ -292,6 +295,17 @@ require("pckr").add({
 
       -- Python
       vim.lsp.enable("pyright")
+
+      -- TypeScript
+      vim.lsp.config("tsserver", {
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = { "typescript" },
+        root_dir = vim.fs.root(0, { "package.json", ".git" }),
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+
+      vim.lsp.enable("tsserver")
     end,
   },
 
