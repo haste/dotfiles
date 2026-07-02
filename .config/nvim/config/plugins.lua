@@ -155,7 +155,14 @@ require("pckr").add({
 
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
-          local ignored = { fzf = true, gitignore = true, off = true }
+          local ignored = {
+            fzf = true,
+            gitignore = true,
+            off = true,
+            ["blink-cmp-menu"] = true,
+            ["blink-cmp-documentation"] = true,
+            ["blink-cmp-signature"] = true,
+          }
           local ft = vim.bo[args.buf].filetype
 
           if ignored[ft] then
@@ -306,15 +313,22 @@ require("pckr").add({
       -- TypeScript
       vim.lsp.config("tsserver", {
         cmd = { "typescript-language-server", "--stdio" },
-        filetypes = { "typescript" },
-        root_dir = vim.fs.root(0, { "package.json", ".git" }),
-        on_attach = on_attach,
-        capabilities = capabilities,
+        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+        root_markers = { "package.json", "tsconfig.json", ".git" },
       })
 
       vim.lsp.enable("tsserver")
 
       vim.lsp.enable("html")
+
+      -- 0.12 provides grn/gra/grr/gri/gO/K by default; add go-to-definition.
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local opts = { buffer = args.buf, noremap = true, silent = true }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        end,
+      })
     end,
   },
 
@@ -374,8 +388,22 @@ require("pckr").add({
   --- Completion
   ---
 
-  -- https://github.com/neoclide/coc.nvim
-  --  Nodejs extension host for vim & neovim, load extensions like VSCode and host
-  --  language servers.
-  { "neoclide/coc.nvim", branch = "release" },
+  -- https://github.com/saghen/blink.cmp
+  --  Performant, batteries-included completion; auto popup while typing.
+  {
+    "saghen/blink.cmp",
+    tag = "v1.*",
+    config = function()
+      require("blink.cmp").setup({
+        keymap = { preset = "default" },
+        sources = { default = { "lsp", "path", "buffer" } },
+        completion = { documentation = { auto_show = true } },
+      })
+
+      -- Advertise blink's capabilities to every LSP server.
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+    end,
+  },
 })
