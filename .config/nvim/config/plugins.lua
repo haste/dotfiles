@@ -384,6 +384,34 @@ require("pckr").add({
     end,
   },
 
+  -- https://github.com/folke/trouble.nvim
+  --  A pretty, navigable list of diagnostics shown in a bottom split.
+  {
+    "folke/trouble.nvim",
+    config = function()
+      require("trouble").setup({
+        modes = {
+          diagnostics = {
+            win = { position = "bottom", size = 10 },
+          },
+        },
+      })
+
+      vim.keymap.set(
+        "n",
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        { desc = "Diagnostics (Trouble)" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        { desc = "Buffer diagnostics (Trouble)" }
+      )
+    end,
+  },
+
   ---
   --- Completion
   ---
