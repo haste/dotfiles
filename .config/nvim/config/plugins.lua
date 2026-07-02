@@ -132,6 +132,7 @@ require("pckr").add({
     config = function()
       require("nvim-treesitter").install({
         "c",
+        "c_sharp",
         "cpp",
         "css",
         "elixir",
@@ -153,7 +154,13 @@ require("pckr").add({
 
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
-          local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+          local ft = vim.bo[args.buf].filetype
+
+          if ft == "fzf" then
+            return
+          end
+
+          local lang = vim.treesitter.language.get_lang(ft)
           if lang and pcall(vim.treesitter.language.add, lang) then
             vim.treesitter.start(args.buf, lang)
             vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
@@ -295,6 +302,19 @@ require("pckr").add({
       })
 
       vim.lsp.enable("tsserver")
+    end,
+  },
+
+  -- https://github.com/seblyng/roslyn.nvim
+  --  Roslyn (Microsoft.CodeAnalysis.LanguageServer) support for C#.
+  {
+    "seblyng/roslyn.nvim",
+    config = function()
+      require("roslyn").setup({})
+
+      vim.lsp.config("roslyn", {
+        filetypes = { "cs" },
+      })
     end,
   },
 
