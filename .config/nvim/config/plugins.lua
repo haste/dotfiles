@@ -154,9 +154,10 @@ require("pckr").add({
 
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
+          local ignored = { fzf = true, gitignore = true }
           local ft = vim.bo[args.buf].filetype
 
-          if ft == "fzf" then
+          if ignored[ft] then
             return
           end
 
