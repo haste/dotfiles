@@ -155,7 +155,7 @@ require("pckr").add({
 
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
-          local ignored = { fzf = true, gitignore = true }
+          local ignored = { fzf = true, gitignore = true, off = true }
           local ft = vim.bo[args.buf].filetype
 
           if ignored[ft] then
@@ -313,6 +313,8 @@ require("pckr").add({
       })
 
       vim.lsp.enable("tsserver")
+
+      vim.lsp.enable("html")
     end,
   },
 
