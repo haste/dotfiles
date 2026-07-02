@@ -145,6 +145,7 @@ require("pckr").add({
         "php",
         "python",
         "query",
+        "razor",
         "sql",
         "terraform",
         "typescript",
@@ -320,10 +321,17 @@ require("pckr").add({
   {
     "seblyng/roslyn.nvim",
     config = function()
+      vim.filetype.add({
+        extension = {
+          razor = "razor",
+          cshtml = "razor",
+        },
+      })
+
       require("roslyn").setup({})
 
       vim.lsp.config("roslyn", {
-        filetypes = { "cs" },
+        filetypes = { "cs", "razor" },
       })
     end,
   },
