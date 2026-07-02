@@ -425,7 +425,39 @@ require("pckr").add({
       require("blink.cmp").setup({
         keymap = { preset = "default" },
         sources = { default = { "lsp", "path", "buffer" } },
-        completion = { documentation = { auto_show = true } },
+
+        appearance = {
+          -- Nerd Font is installed; use the mono variant so icon columns align.
+          nerd_font_variant = "mono",
+        },
+
+        completion = {
+          menu = {
+            border = "rounded",
+            draw = {
+              -- Highlight completion labels with treesitter for language-aware colors.
+              treesitter = { "lsp" },
+              -- icon | label + inline type | kind name
+              columns = {
+                { "kind_icon" },
+                { "label", "label_description", gap = 1 },
+                { "kind" },
+              },
+            },
+          },
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 200,
+            window = { border = "rounded" },
+          },
+          -- Subtle ghost-text preview of the selected item inline.
+          ghost_text = { enabled = true },
+        },
+
+        signature = {
+          enabled = true,
+          window = { border = "rounded" },
+        },
       })
 
       -- Advertise blink's capabilities to every LSP server.
