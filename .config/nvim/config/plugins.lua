@@ -155,22 +155,14 @@ require("pckr").add({
 
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
-          local ignored = {
-            fzf = true,
-            gitignore = true,
-            off = true,
-            ["blink-cmp-menu"] = true,
-            ["blink-cmp-documentation"] = true,
-            ["blink-cmp-signature"] = true,
-          }
           local ft = vim.bo[args.buf].filetype
-
-          if ignored[ft] then
+          local lang = vim.treesitter.language.get_lang(ft)
+          if not lang then
             return
           end
 
-          local lang = vim.treesitter.language.get_lang(ft)
-          if lang and pcall(vim.treesitter.language.add, lang) then
+          local ok, added = pcall(vim.treesitter.language.add, lang)
+          if ok and added then
             vim.treesitter.start(args.buf, lang)
             vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
