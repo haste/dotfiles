@@ -37,7 +37,7 @@ require("pckr").add({
     config = function()
       local conform = require("conform")
 
-      local slow_format_filetypes = {}
+      local slow_format_filetypes = { razor = true }
 
       local javascript = { "biome", "prettier" }
 
