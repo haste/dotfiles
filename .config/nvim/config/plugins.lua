@@ -45,7 +45,7 @@ require("pckr").add({
         formatters_by_ft = {
           css = javascript,
           elixir = { "mix" },
-          go = { "gofmt" },
+          go = { "goimports" },
           heex = { "mix" },
           htmldjango = { "djlint" },
           html = { "djlint" },
@@ -291,6 +291,15 @@ require("pckr").add({
 
       -- Python
       vim.lsp.enable("pyright")
+
+      -- Go
+      vim.lsp.config("gopls", {
+        cmd = { "gopls" },
+        filetypes = { "go", "gomod", "gowork", "gotmpl" },
+        root_markers = { "go.work", "go.mod", ".git" },
+      })
+
+      vim.lsp.enable("gopls")
 
       -- TypeScript
       vim.lsp.config("tsserver", {
