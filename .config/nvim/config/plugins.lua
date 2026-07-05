@@ -137,6 +137,8 @@ require("pckr").add({
         "css",
         "elixir",
         "fish",
+        "gitignore",
+        "git_rebase",
         "go",
         "html",
         "javascript",
@@ -389,12 +391,7 @@ require("pckr").add({
         },
       })
 
-      vim.keymap.set(
-        "n",
-        "<leader>xx",
-        "<cmd>Trouble diagnostics toggle<cr>",
-        { desc = "Diagnostics (Trouble)" }
-      )
+      vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
       vim.keymap.set(
         "n",
         "<leader>xX",
