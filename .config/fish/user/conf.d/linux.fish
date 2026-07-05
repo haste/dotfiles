@@ -8,10 +8,10 @@ switch (uname)
       switch $hostname
         case triagia
           export GDK_SCALE=2
-          exec sway --config ~/.config/sway/triagia
+          exec dbus-run-session -- sway --config ~/.config/sway/triagia
 
         case '*'
-          exec sway
+          exec dbus-run-session -- sway
       end
     end
 end

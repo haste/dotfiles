@@ -16,15 +16,15 @@
 fish_history
 fish_read_history
 fishd.*
-
-# Ignore Fisherman files and symlinks
-.config/fish/completions/fisher.fish
-.config/fish/completions/get.fish
-.config/fish/conf.d/ssh-agent.init.fish
 .config/fisherman/
-.config/fish/fish_variables
-.config/fish/functions/*
-.config/fish/functions/fisher.fish
+
+# fish: fisher owns conf.d/ functions/ completions/ (all generated, all ignored).
+# My config lives in config.fish, fish_plugins, and user/ — tracked.
+.config/fish/*
+!.config/fish/config.fish
+!.config/fish/fish_plugins
+!.config/fish/user
+!.config/fish/user/**
 
 # Neovim related files
 .config/nvim/.netrwhist
