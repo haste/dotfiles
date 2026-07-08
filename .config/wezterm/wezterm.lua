@@ -17,7 +17,9 @@ config.window_padding = {
   bottom = 0,
 }
 
-config.selection_word_boundary = " \t\n{}[]()\"'`:"
+config.scrollback_lines = 100000
+
+config.selection_word_boundary = " \t\n{}[]()<>\"'`:"
 
 config.keys = {
   { key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
