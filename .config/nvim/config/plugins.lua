@@ -37,7 +37,9 @@ require("pckr").add({
     config = function()
       local conform = require("conform")
 
-      local slow_format_filetypes = { razor = true }
+      local never_format_filetypes = {
+        razor = true, -- Roslyn corrupts razor files on format
+      }
 
       local javascript = { "biome", "prettier" }
 
@@ -62,7 +64,7 @@ require("pckr").add({
           vue = { "prettier" },
         },
         format_on_save = function(bufnr)
-          if slow_format_filetypes[vim.bo[bufnr].filetype] then
+          if never_format_filetypes[vim.bo[bufnr].filetype] then
             return
           end
 
@@ -71,26 +73,7 @@ require("pckr").add({
             return
           end
 
-          local function on_format(err)
-            if err and err:match("timeout$") then
-              slow_format_filetypes[vim.bo[bufnr].filetype] = true
-            end
-          end
-
-          return { timeout_ms = 200, lsp_format = "fallback" }, on_format
-        end,
-
-        format_after_save = function(bufnr)
-          if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-            return
-          end
-
-          -- Disable with a global or buffer-local variable
-          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            return
-          end
-
-          return { lsp_format = "fallback" }
+          return { timeout_ms = 200, lsp_format = "fallback" }
         end,
       })
 
