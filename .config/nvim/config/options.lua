@@ -4,9 +4,6 @@ vim.opt.termguicolors = true
 --Rounded borders on all floating windows (LSP hover `K`, diagnostics, etc.)
 vim.opt.winborder = "rounded"
 
---Required by Vundle
-vim.opt.filetype = "off"
-
 --Don't create swapfiles
 vim.opt.swapfile = false
 
