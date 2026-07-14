@@ -253,6 +253,7 @@ require("pckr").add({
     run = ":TSUpdate",
     config = function()
       require("nvim-treesitter").install({
+        "bash",
         "c",
         "c_sharp",
         "comment",
@@ -283,6 +284,7 @@ require("pckr").add({
         "vim",
         "vimdoc",
         "xml",
+        "yaml",
       })
 
       vim.api.nvim_create_autocmd("FileType", {
