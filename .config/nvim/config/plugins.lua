@@ -136,6 +136,7 @@ require("pckr").add({
       require("nvim-treesitter").install({
         "c",
         "c_sharp",
+        "comment",
         "cpp",
         "css",
         "diff",
