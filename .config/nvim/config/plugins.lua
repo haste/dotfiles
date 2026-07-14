@@ -45,6 +45,7 @@ require("pckr").add({
 
       conform.setup({
         formatters_by_ft = {
+          cs = { "csharpier" },
           css = javascript,
           elixir = { "mix" },
           go = { "goimports" },
@@ -73,9 +74,35 @@ require("pckr").add({
             return
           end
 
-          return { timeout_ms = 200, lsp_format = "fallback" }
+          -- CSharpier can exceed 200ms on cold start
+          local timeout = vim.bo[bufnr].filetype == "cs" and 2000 or 200
+          return { timeout_ms = timeout, lsp_format = "fallback" }
         end,
       })
+
+      -- Only use CSharpier in projects that opt in via a .csharpierrc file
+      -- or an .editorconfig that sets max_line_length. Elsewhere C# falls
+      -- back to LSP (Roslyn) formatting.
+      conform.formatters.csharpier = {
+        condition = function(_, ctx)
+          for dir in vim.fs.parents(ctx.filename) do
+            for _, name in ipairs({ ".csharpierrc", ".csharpierrc.json", ".csharpierrc.yaml", ".csharpierrc.yml" }) do
+              if vim.uv.fs_stat(dir .. "/" .. name) then
+                return true
+              end
+            end
+            local editorconfig = dir .. "/.editorconfig"
+            if vim.uv.fs_stat(editorconfig) then
+              for line in io.lines(editorconfig) do
+                if line:match("^%s*max_line_length%s*=") then
+                  return true
+                end
+              end
+            end
+          end
+          return false
+        end,
+      }
 
       vim.api.nvim_create_user_command("FormatDisable", function(args)
         if args.bang then
