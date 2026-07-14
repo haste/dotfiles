@@ -77,13 +77,6 @@ require("pckr").add({
         end,
       })
 
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
-        callback = function(args)
-          conform.format({ bufnr = args.buf })
-        end,
-      })
-
       vim.api.nvim_create_user_command("FormatDisable", function(args)
         if args.bang then
           -- FormatDisable! will disable formatting just for this buffer
