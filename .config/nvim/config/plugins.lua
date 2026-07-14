@@ -148,7 +148,10 @@ require("pckr").add({
           local ok, added = pcall(vim.treesitter.language.add, lang)
           if ok and added then
             vim.treesitter.start(args.buf, lang)
-            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            -- Use filetype indent if tree-sitter doesn't have it
+            if vim.treesitter.query.get(lang, "indents") then
+              vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
           end
         end,
       })
