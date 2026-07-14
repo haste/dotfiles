@@ -163,6 +163,7 @@ require("pckr").add({
         "typescript",
         "vim",
         "vimdoc",
+        "xml",
       })
 
       vim.api.nvim_create_autocmd("FileType", {
