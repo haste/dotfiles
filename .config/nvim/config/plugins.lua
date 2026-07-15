@@ -37,9 +37,25 @@ require("pckr").add({
     config = function()
       local conform = require("conform")
 
-      local never_format_filetypes = {
-        razor = true, -- Roslyn corrupts razor files on format
-      }
+      -- Opt-in via .csharpierrc or .editorconfig max_line_length
+      local function csharpier_opted_in(filename)
+        for dir in vim.fs.parents(filename) do
+          for _, name in ipairs({ ".csharpierrc", ".csharpierrc.json", ".csharpierrc.yaml", ".csharpierrc.yml" }) do
+            if vim.uv.fs_stat(dir .. "/" .. name) then
+              return true
+            end
+          end
+          local editorconfig = dir .. "/.editorconfig"
+          if vim.uv.fs_stat(editorconfig) then
+            for line in io.lines(editorconfig) do
+              if line:match("^%s*max_line_length%s*=") then
+                return true
+              end
+            end
+          end
+        end
+        return false
+      end
 
       local javascript = { "biome", "prettier" }
 
@@ -65,12 +81,13 @@ require("pckr").add({
           vue = { "prettier" },
         },
         format_on_save = function(bufnr)
-          if never_format_filetypes[vim.bo[bufnr].filetype] then
+          -- Disable with a global or buffer-local variable
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
           end
 
-          -- Disable with a global or buffer-local variable
-          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          -- Razor formats asynchronously via a BufWritePost autocmd below
+          if vim.bo[bufnr].filetype == "razor" then
             return
           end
 
@@ -80,27 +97,129 @@ require("pckr").add({
         end,
       })
 
-      -- Only use CSharpier in projects that opt in via a .csharpierrc file
-      -- or an .editorconfig that sets max_line_length. Elsewhere C# falls
-      -- back to LSP (Roslyn) formatting.
-      conform.formatters.csharpier = {
-        condition = function(_, ctx)
-          for dir in vim.fs.parents(ctx.filename) do
-            for _, name in ipairs({ ".csharpierrc", ".csharpierrc.json", ".csharpierrc.yaml", ".csharpierrc.yml" }) do
-              if vim.uv.fs_stat(dir .. "/" .. name) then
-                return true
+      -- Full-document formatting mangles razor markup; only format @code/@{} blocks
+      local function razor_code_blocks(bufnr)
+        local ok, parser = pcall(vim.treesitter.get_parser, bufnr, "razor")
+        if not ok or not parser then
+          return {}
+        end
+        local blocks = {}
+        for node in parser:parse()[1]:root():iter_children() do
+          if node:type() == "razor_block" then
+            local open_row, close_row
+            for child in node:iter_children() do
+              if child:type() == "{" and not open_row then
+                open_row = child:range()
+              elseif child:type() == "}" then
+                close_row = child:range()
               end
             end
-            local editorconfig = dir .. "/.editorconfig"
-            if vim.uv.fs_stat(editorconfig) then
-              for line in io.lines(editorconfig) do
-                if line:match("^%s*max_line_length%s*=") then
-                  return true
+            local sr, sc, er, ec = node:range()
+            if open_row and close_row and close_row > open_row + 1 then
+              -- Prepend so blocks format bottom-up, keeping earlier positions valid
+              table.insert(blocks, 1, {
+                first = open_row + 1, -- 0-indexed first body line
+                last = close_row, -- 0-indexed, exclusive
+                lsp_range = { start = { sr + 1, sc }, ["end"] = { er + 1, ec } },
+              })
+            end
+          end
+        end
+        return blocks
+      end
+
+      local function csharpier_format_block(buf, block, done)
+        local body = vim.api.nvim_buf_get_lines(buf, block.first, block.last, false)
+        local input = "class __Razor__\n{\n" .. table.concat(body, "\n") .. "\n}\n"
+        local tick = vim.b[buf].changedtick
+        vim.system(
+          { "csharpier", "format", "--write-stdout" },
+          { stdin = input, cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(buf)), text = true },
+          vim.schedule_wrap(function(res)
+            if not vim.api.nvim_buf_is_valid(buf) or vim.b[buf].changedtick ~= tick then
+              return done()
+            end
+            if res.code ~= 0 then
+              local err = res.stderr ~= "" and res.stderr or res.stdout
+              vim.notify("csharpier (razor @code): " .. vim.trim(err or ""), vim.log.levels.WARN)
+              return done()
+            end
+            local out = vim.split(res.stdout, "\n")
+            -- Strip the dummy class wrapper and trailing blank lines
+            table.remove(out, 1)
+            table.remove(out, 1)
+            while out[#out] == "" do
+              table.remove(out)
+            end
+            if out[#out] == "}" then
+              table.remove(out)
+            end
+            local changed = #out ~= #body
+            if not changed then
+              for i = 1, #out do
+                if out[i] ~= body[i] then
+                  changed = true
+                  break
                 end
               end
             end
+            if changed then
+              vim.api.nvim_buf_set_lines(buf, block.first, block.last, false, out)
+            end
+            done()
+          end)
+        )
+      end
+
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = { "*.razor", "*.cshtml" },
+        callback = function(args)
+          local buf = args.buf
+          if vim.g.disable_autoformat or vim.b[buf].disable_autoformat then
+            return
           end
-          return false
+
+          -- Skip the write we trigger ourselves after formatting
+          if vim.b[buf].razor_formatting then
+            vim.b[buf].razor_formatting = false
+            return
+          end
+
+          local blocks = razor_code_blocks(buf)
+          local use_csharpier = vim.fn.executable("csharpier") == 1
+            and csharpier_opted_in(vim.api.nvim_buf_get_name(buf))
+
+          local function format_next(index)
+            local block = blocks[index]
+            if not block then
+              if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].modified then
+                vim.b[buf].razor_formatting = true
+                vim.api.nvim_buf_call(buf, function()
+                  vim.cmd("silent update")
+                end)
+              end
+              return
+            end
+            if use_csharpier then
+              csharpier_format_block(buf, block, function()
+                format_next(index + 1)
+              end)
+            else
+              conform.format(
+                { bufnr = buf, async = true, lsp_format = "fallback", range = block.lsp_range },
+                function()
+                  format_next(index + 1)
+                end
+              )
+            end
+          end
+          format_next(1)
+        end,
+      })
+
+      conform.formatters.csharpier = {
+        condition = function(_, ctx)
+          return csharpier_opted_in(ctx.filename)
         end,
       }
 
@@ -326,6 +445,18 @@ require("pckr").add({
       })
 
       vim.lsp.enable("tsserver")
+
+      -- Handles razor markup formatting; the default 120-char wrap corrupts @code blocks
+      vim.lsp.config("html", {
+        settings = {
+          html = {
+            format = {
+              wrapLineLength = 0,
+              wrapAttributes = "force-expand-multiline",
+            },
+          },
+        },
+      })
 
       vim.lsp.enable("html")
 
