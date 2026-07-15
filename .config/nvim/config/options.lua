@@ -59,18 +59,8 @@ vim.opt.cursorline = true
 --Disable folding of code
 vim.opt.foldenable = false
 
---Always show the sign column. Prevents gitgutter and syntastic from making the
---text jump.
---[[
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = { "*" },
-	command = "execute sign define dummy",
-})
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = { "*" },
-	command = "execute sign place 9999 line=1 name=dummy buffer=" .. vim.api.nvim_get_current_buf(),
-})
-]]
+--Always show the sign column so text doesn't jump when signs come and go.
+vim.opt.signcolumn = "yes"
 
 --Save history
 
