@@ -11,6 +11,8 @@ set -x LESS "-XFR"
 
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 
+set -x USQL_TERM_GRAPHICS "none"
+
 switch (uname)
     case Linux
         set -x EDITOR /usr/bin/nvim
