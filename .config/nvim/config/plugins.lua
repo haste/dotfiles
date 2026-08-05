@@ -17,6 +17,83 @@ end
 
 bootstrap_pckr()
 
+--
+-- Python tooling: project uv env, then a global install, then `uv tool run`
+--
+
+-- Tools uv may fetch on demand, mapped to their package
+local python_packages = { black = "black", ruff = "ruff", ["pyright-langserver"] = "pyright" }
+
+-- Argv for a tool, or nil when nothing provides it
+local function python_command(tool, path)
+  local root = vim.fs.root((path and path ~= "") and path or vim.fn.getcwd(), ".venv")
+  local bin = root and root .. "/.venv/bin/" .. tool
+
+  if bin and vim.fn.executable(bin) == 1 then
+    return { bin }
+  end
+
+  -- Also covers an activated venv, which puts its bin on $PATH
+  if vim.fn.executable(tool) == 1 then
+    return { tool }
+  end
+
+  local package = python_packages[tool]
+  if package and vim.fn.executable("uv") == 1 then
+    return { "uv", "tool", "run", "--from", package, tool }
+  end
+end
+
+-- Ruff formats where the project configures it, unless black is configured too
+local function python_ft_formatters(bufnr)
+  local path = vim.api.nvim_buf_get_name(bufnr)
+  local dir = path ~= "" and path or vim.fn.getcwd()
+
+  if vim.fs.root(dir, { "ruff.toml", ".ruff.toml" }) then
+    return { "ruff_format" }
+  end
+
+  local root = vim.fs.root(dir, "pyproject.toml")
+  if root then
+    local ruff = false
+    for line in io.lines(root .. "/pyproject.toml") do
+      if line:match("^%s*%[tool%.black") then
+        return { "black" }
+      elseif line:match("^%s*%[tool%.ruff") then
+        ruff = true
+      end
+    end
+    if ruff then
+      return { "ruff_format" }
+    end
+  end
+
+  return { "black" }
+end
+
+-- Bare name as fallback so conform reports it missing
+local function python_formatter(tool)
+  return function(bufnr)
+    local argv = python_command(tool, vim.api.nvim_buf_get_name(bufnr)) or { tool }
+    local command = table.remove(argv, 1)
+    return { command = command, prepend_args = argv }
+  end
+end
+
+-- Resolved at lint time; args length varies by source
+local function python_linter(tool)
+  return function()
+    local base = require("lint.linters." .. tool)
+    local argv = python_command(tool, vim.api.nvim_buf_get_name(0)) or { tool }
+    local cmd = table.remove(argv, 1)
+
+    return vim.tbl_extend("force", base, {
+      cmd = cmd,
+      args = vim.list_extend(argv, base.args or {}),
+    })
+  end
+end
+
 require("pckr").add({
   --
   -- Colorschemes
@@ -73,7 +150,7 @@ require("pckr").add({
           json = javascript,
           lua = { "stylua" },
           php = { "mago_format" },
-          python = { "black" },
+          python = python_ft_formatters,
           scss = javascript,
           sql = { "sleek" },
           typescript = javascript,
@@ -91,8 +168,9 @@ require("pckr").add({
             return
           end
 
-          -- CSharpier can exceed 200ms on cold start
-          local timeout = vim.bo[bufnr].filetype == "cs" and 2000 or 200
+          -- CSharpier and python tools exceed 200ms on cold start
+          local ft = vim.bo[bufnr].filetype
+          local timeout = (ft == "cs" or ft == "python") and 2000 or 200
           return { timeout_ms = timeout, lsp_format = "fallback" }
         end,
       })
@@ -222,6 +300,9 @@ require("pckr").add({
           return csharpier_opted_in(ctx.filename)
         end,
       }
+
+      conform.formatters.black = python_formatter("black")
+      conform.formatters.ruff_format = python_formatter("ruff")
 
       vim.api.nvim_create_user_command("FormatDisable", function(args)
         if args.bang then
@@ -428,7 +509,26 @@ require("pckr").add({
       vim.lsp.enable("expert")
 
       -- Python
-      vim.lsp.enable("pyright")
+      vim.lsp.config("pyright", {
+        -- Resolved per client so each root gets its own env
+        cmd = function(dispatchers, config)
+          local argv = python_command("pyright-langserver", config.root_dir) or { "pyright-langserver" }
+          table.insert(argv, "--stdio")
+          return vim.lsp.rpc.start(argv, dispatchers)
+        end,
+        -- Otherwise pyright can't resolve project dependencies
+        on_init = function(client)
+          local python = python_command("python", client.root_dir)
+          if python then
+            client.settings =
+              vim.tbl_deep_extend("force", client.settings or {}, { python = { pythonPath = python[1] } })
+          end
+        end,
+      })
+
+      if python_command("pyright-langserver") then
+        vim.lsp.enable("pyright")
+      end
 
       -- Go
       vim.lsp.config("gopls", {
@@ -508,9 +608,19 @@ require("pckr").add({
         python = { "ruff", "flake8" },
       }
 
+      for _, tool in ipairs(lint.linters_by_ft.python) do
+        lint.linters[tool] = python_linter(tool)
+      end
+
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
-          pcall(lint.try_lint)
+          pcall(lint.try_lint, nil, {
+            -- Skip linters that aren't installed
+            filter = function(linter)
+              local cmd = type(linter.cmd) == "function" and linter.cmd() or linter.cmd
+              return cmd ~= nil and vim.fn.executable(cmd) == 1
+            end,
+          })
         end,
       })
     end,
