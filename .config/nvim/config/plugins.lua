@@ -349,6 +349,7 @@ require("pckr").add({
         "git_config",
         "git_rebase",
         "go",
+        "heex",
         "html",
         "javascript",
         "json",
