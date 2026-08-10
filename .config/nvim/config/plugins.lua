@@ -363,6 +363,7 @@ require("pckr").add({
         "terraform",
         "tsx",
         "typescript",
+        "typst",
         "vim",
         "vimdoc",
         "xml",
