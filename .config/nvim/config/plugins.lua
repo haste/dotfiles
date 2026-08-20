@@ -94,6 +94,20 @@ local function python_linter(tool)
   end
 end
 
+-- Whether a root's TypeScript serves LSP natively (7+); no pinned typescript means the global tsc
+local function typescript_is_native(root)
+  local file = root and io.open(root .. "/node_modules/typescript/package.json")
+  if not file then
+    return true
+  end
+
+  local ok, pkg = pcall(vim.json.decode, file:read("a"))
+  file:close()
+
+  local major = ok and type(pkg) == "table" and tonumber(tostring(pkg.version):match("^%d+"))
+  return not major or major >= 7
+end
+
 require("pckr").add({
   --
   -- Colorschemes
@@ -283,12 +297,9 @@ require("pckr").add({
                 format_next(index + 1)
               end)
             else
-              conform.format(
-                { bufnr = buf, async = true, lsp_format = "fallback", range = block.lsp_range },
-                function()
-                  format_next(index + 1)
-                end
-              )
+              conform.format({ bufnr = buf, async = true, lsp_format = "fallback", range = block.lsp_range }, function()
+                format_next(index + 1)
+              end)
             end
           end
           format_next(1)
@@ -541,14 +552,34 @@ require("pckr").add({
 
       vim.lsp.enable("gopls")
 
-      -- TypeScript
-      vim.lsp.config("tsserver", {
-        cmd = { "typescript-language-server", "--stdio" },
-        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-        root_markers = { "package.json", "tsconfig.json", ".git" },
+      local function typescript_root_dir(server, native)
+        local base = vim.lsp.config[server].root_dir
+        return function(bufnr, on_dir)
+          base(bufnr, function(dir)
+            if typescript_is_native(dir) == native then
+              on_dir(dir)
+            end
+          end)
+        end
+      end
+
+      vim.lsp.config("tsgo", {
+        -- TS 7 renamed the tsgo binary to tsc; prefer the project's own
+        cmd = function(dispatchers, config)
+          local tsc = ((config or {}).root_dir or "") .. "/node_modules/.bin/tsc"
+          if vim.fn.executable(tsc) ~= 1 then
+            tsc = "tsc"
+          end
+          return vim.lsp.rpc.start({ tsc, "--lsp", "--stdio" }, dispatchers)
+        end,
+        root_dir = typescript_root_dir("tsgo", true),
       })
 
-      vim.lsp.enable("tsserver")
+      vim.lsp.config("ts_ls", {
+        root_dir = typescript_root_dir("ts_ls", false),
+      })
+
+      vim.lsp.enable({ "tsgo", "ts_ls" })
 
       -- Handles razor markup formatting; the default 120-char wrap corrupts @code blocks
       vim.lsp.config("html", {
