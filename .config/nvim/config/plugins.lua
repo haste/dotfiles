@@ -94,18 +94,9 @@ local function python_linter(tool)
   end
 end
 
--- Whether a root's TypeScript serves LSP natively (7+); no pinned typescript means the global tsc
+-- Native unless the root's TypeScript ships the tsserver.js ts_ls needs (dropped in 6+)
 local function typescript_is_native(root)
-  local file = root and io.open(root .. "/node_modules/typescript/package.json")
-  if not file then
-    return true
-  end
-
-  local ok, pkg = pcall(vim.json.decode, file:read("a"))
-  file:close()
-
-  local major = ok and type(pkg) == "table" and tonumber(tostring(pkg.version):match("^%d+"))
-  return not major or major >= 7
+  return not (root and vim.uv.fs_stat(root .. "/node_modules/typescript/lib/tsserver.js"))
 end
 
 require("pckr").add({
